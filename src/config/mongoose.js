@@ -1,16 +1,26 @@
 const mongoose = require('mongoose');
+const { mongodb_url } = require('./var');
 
-const url = 'mongodb://localhost:27018'
+mongoose.connection.on('error', err => {
+  console.log(`MongoDB connection error: ${err}`);
+  process.exit(-1);
+});
+mongoose.connection.on('open', () => {
+  console.log('connect success!');
+});
 
 exports.connect = function() {
-  console.log('start mongo')
-  mongoose.connect(url, {
-    useCreateIndex: true,
-    keepAlive: 1,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-    .then(()=>{console.log('mongodb connected')})
-  return mongoose.connection;
-}
+  console.log({ mongodb_url });
+  mongoose
+    .connect(mongodb_url, {
+      useCreateIndex: true,
+      keepAlive: 1,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    })
+    .then(() => {
+      console.log('mongodb connected');
+    });
+  // return mongoose.connection;
+};

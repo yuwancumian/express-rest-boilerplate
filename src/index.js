@@ -1,4 +1,4 @@
-const { port, env } = require('./config/env');
+const { port, env } = require('./config/var');
 const app = require('./config/express');
 const mongoose = require('./config/mongoose');
 

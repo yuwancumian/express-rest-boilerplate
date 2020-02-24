@@ -1,0 +1,17 @@
+GET http://localhost:3000/v1/test
+
+###
+GET http://localhost:3000/v1/book
+
+###
+POST http://localhost:3000/v1/book
+Content-type: application/json
+
+{
+  "name": "royi",
+  "category": "111"
+}
+
+### 
+GET http://localhost:3000/v1/book/1
+
